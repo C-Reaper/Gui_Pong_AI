@@ -176,11 +176,11 @@ float ElapTime = 0.05f;
 RLNeuralNetwork nn;
 AlxFont font;
 
-void NeuralEnviroment_Func_State(RLNeuralNetwork* nn,DecisionState* ds){
+void NeuralEnvironment_Func_State(RLNeuralNetwork* nn,DecisionState* ds){
     PongInfos pi_before = PongInfos_New();
     DecisionState_SetBefore(ds,(NeuralType*)&pi_before);
 }
-void NeuralEnviroment_Func_Step(RLNeuralNetwork* nn,DecisionState* ds,int d){
+void NeuralEnvironment_Func_Step(RLNeuralNetwork* nn,DecisionState* ds,int d){
     PongInfos pi_before = PongInfos_New();
     DecisionState_SetBefore(ds,(NeuralType*)&pi_before);
 
@@ -221,7 +221,7 @@ void NeuralEnviroment_Func_Step(RLNeuralNetwork* nn,DecisionState* ds,int d){
 
     DecisionState_SetReward(ds,ret);
 }
-void NeuralEnviroment_Func_Undo(RLNeuralNetwork* nn,DecisionState* ds){
+void NeuralEnvironment_Func_Undo(RLNeuralNetwork* nn,DecisionState* ds){
     PongInfos* pi = (PongInfos*)ds->before;
     ball.p.y = pi->bally - ball.d.y * 0.5f;
     paddle2.p.y = pi->paddle2y - paddle2.d.y * 0.5f;
@@ -283,10 +283,10 @@ void Setup(AlxWindow* w){
             NeuralLayerBuilder_Make(NN_OUTPUTS,"softmax"),
             NeuralLayerBuilder_End()
         }),
-        NeuralEnviroment_New(
-            (void*)NeuralEnviroment_Func_State,
-            (void*)NeuralEnviroment_Func_Step,
-            (void*)NeuralEnviroment_Func_Undo,
+        NeuralEnvironment_New(
+            (void*)NeuralEnvironment_Func_State,
+            (void*)NeuralEnvironment_Func_Step,
+            (void*)NeuralEnvironment_Func_Undo,
             sizeof(PongInfos) / sizeof(NeuralType),
             NN_OUTPUTS
         )
@@ -319,10 +319,10 @@ void Update(AlxWindow* w){
                     NeuralLayerBuilder_Make(NN_OUTPUTS,"softmax"),
                     NeuralLayerBuilder_End()
                 }),
-                NeuralEnviroment_New(
-                    (void*)NeuralEnviroment_Func_State,
-                    (void*)NeuralEnviroment_Func_Step,
-                    (void*)NeuralEnviroment_Func_Undo,
+                NeuralEnvironment_New(
+                    (void*)NeuralEnvironment_Func_State,
+                    (void*)NeuralEnvironment_Func_Step,
+                    (void*)NeuralEnvironment_Func_Undo,
                     sizeof(PongInfos) / sizeof(NeuralType),
                     NN_OUTPUTS
                 )
