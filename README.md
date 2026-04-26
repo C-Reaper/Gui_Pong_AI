@@ -1,193 +1,75 @@
-# Gui_Pong_AI
+# Project README
 
+## Overview
+This project is a Pong game with AI, implemented in C and utilizing a custom GUI library. The game runs on Linux, Windows, web, and Wine environments.
 
-## Project Overview
+## Features
+- Basic Pong gameplay
+- Single-player mode against an AI opponent
+- Adjustable speed of the AI paddle
+- Score tracking
+- Customizable display settings (width, height)
+- Debugging features
 
-This project implements specialized functionality related to pong_ai.
-
-## Core Components
-
-### Main Functionality
-- Implements core algorithms for pong_ai
-- Efficient data structures
-- Optimized performance
-- Clean code organization
-
-### Technical Features
-- C/C++ implementation
-- Dynamic memory management
-- Platform-independent design
-- Real-time capable
-
-### Architecture
-- Module separation
-- Clear interface design
-- Proper abstraction layers
-- Extensible design
-
-## Use Cases
-- Production systems
-- Educational purposes
-- Research applications
-- Performance-critical operations
-
-## Performance Characteristics
-- Optimized algorithms
-- Efficient memory usage
-- Scalable architecture
-- Minimal overhead
-
-## Implementation Quality
-- Well-organized code
-- Meaningful naming
-- Proper error handling
-- Memory management
-
-## Build and Deployment
-- Standard C/C++ compilation
-- Makefile-based building
-- Cross-platform support
-- Easy integration
-
-
-## Building the Project
-
-### Prerequisites
-- C/C++ Compiler (GCC, Clang, or MSVC)
-- Make utility
-- Standard development tools
-
-### Build Steps
-
-1. Navigate to project directory:
-```bash
-cd Gui_Pong_AI
-```
-
-2. Build the project:
-```bash
-make -f Makefile.(os) all
-```
-
-3. For clean rebuild:
-```bash
-make -f Makefile.(os) clean
-make -f Makefile.(os) all
-```
-
-4. If there are ./bin and ./libs directories, build libs with:
-```bash
-make -f Makefile.(os) cleanlib
-make -f Makefile.(os) lib
-```
-
-### Build Options
-```bash
-make -f Makefile.(os) all         # build output
-make -f Makefile.(os) do        # build + exe output
-make -f Makefile.(os) clean   # Remove build artifacts
-```
-
-## Running the Project
-
-Execute the compiled binary:
-
-```bash
-./build/Main(.exe)
-```
-
-Or using make:
-```bash
-make -f Makefile.(os) exe
-```
-
-## Project Organization
-
+## Project Structure
 ```
 Gui_Pong_AI/
+├── build/              # .exe files produced by Main.c
 ├── src/
 │   ├── Main.c          # Entry point
-│   └── *.c             # Implementation files
-├── Makefile            # Build configuration
+│   ├── GUI.h           # Header for GUI library functions
+│   ├── GUI.c           # Implementation of GUI library functions
+│   └── GameLogic.h       # Header for game logic functions
+│       └── GameLogic.c   # Implementation of game logic functions
+├── Makefile.linux      # Linux Build configuration
+├── Makefile.windows    # Windows Build configuration
+├── Makefile.wine       # Wine Build configuration
 └── README.md           # This file
 ```
 
-## Technical Details
+### Prerequisites
+- C/C++ Compiler and Debugger (GCC, Clang)
+- Make utility
+- Standard development tools
+- Libraries needed in specific projects:
+  - Linux: X11, PNG, JPEG
+  - Windows: WINAPI, X11, ALSA
 
-### Language: C/C++
-- Performance-oriented
-- Direct hardware access where needed
-- Memory efficient
-- Widely portable
+## Build & Run
+### Linux
+```bash
+cd Gui_Pong_AI/
+make -f Makefile.linux all
+./build/Main
+```
 
-### Key Technologies
-- Standard C library
-- System-specific libraries as needed
-- Algorithm optimization
-- Efficient data structures
+### Windows
+```bash
+cd Gui_Pong_AI/
+make -f Makefile.windows all
+build\Main.exe
+```
 
-### Code Quality
-- Clean, readable implementation
-- Proper error handling
-- Resource management
-- Well-documented algorithms
+### Wine
+```bash
+cd Gui_Pong_AI/
+make -f Makefile.wine all
+wine build/Main.exe
+```
 
-## Development Notes
+### WebAssembly (Emscripten)
+```bash
+cd Gui_Pong_AI/
+make -f Makefile.web all
+emrun --no_browser --port 8080 build/index.html
+```
 
-### Architecture Decisions
-- Modular design for reusability
-- Efficient algorithms for performance
-- Clear separation of concerns
-- Extensible structure
+# Build Steps
+To build the project for a specific OS, use the appropriate Makefile. For example:
+- Linux: `make -f Makefile.linux all`
+- Windows: `make -f Makefile.windows all`
+- WebAssembly: `make -f Makefile.web all`
 
-### Performance Optimizations
-- Algorithm efficiency
-- Memory layout optimization
-- Cache-conscious programming
-- Minimal overhead
-
-### Portability
-- Cross-platform compatible
-- Platform-specific optimizations where possible
-- Standard library usage
-- No external dependencies (where feasible)
-
-## Troubleshooting
-
-### Build Issues
-- Ensure compiler is installed
-- Check file paths and permissions
-- Verify Make installation
-- Review compiler error messages
-
-### Runtime Issues
-- Check input data validity
-- Verify file accessibility
-- Ensure sufficient memory
-- Review output format
-
-### Performance Issues
-- Check compiler optimization flags
-- Profile hot code paths
-- Review algorithm complexity
-- Consider input size
-
-## Future Improvements
-
-Potential enhancements:
-- Additional optimization opportunities
-- Extended functionality
-- Platform-specific optimizations
-- Performance profiling
-
-## References
-
-For technical background:
-- Algorithm textbooks
-- Computer science references
-- Language documentation
-- Online educational resources
-
----
-
-*Project implementing practical algorithms and data structures in C/C++*
+To clean and rebuild:
+- `make -f Makefile.(os) clean`
+- `make -f Makefile.(os) all`
