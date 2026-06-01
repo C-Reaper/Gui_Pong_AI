@@ -267,7 +267,7 @@ void NeuralNetwork_Render(NeuralNetwork* nn){
 }
 
 void Setup(AlxWindow* w){
-    RGA_Set(Time_Nano());
+    Random_Set(Time_Nano());
     
     font = AlxFont_MAKE_YANIS(12,12);
 
